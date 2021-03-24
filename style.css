@@ -2,7 +2,11 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
 }
+
+
 .board {
   display:flex;
   flex-wrap:wrap;
