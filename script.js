@@ -1,6 +1,4 @@
 let playerTurn = 'playerOne'
-
-
 let circles =  document.querySelectorAll('.circle')
 // console.log(circles.length)
 for (let i=0; i < circles.length; i++){
@@ -8,7 +6,7 @@ for (let i=0; i < circles.length; i++){
 
   circles[i].addEventListener('click', (event) => {
     if(event.target.classList.contains('available')){
-    console.log(event.target)
+    // console.log(event.target)
         if (playerTurn === 'playerOne'){
             event.target.classList.add('playerOne')
             // alert('playerOne')
@@ -18,11 +16,13 @@ for (let i=0; i < circles.length; i++){
             // alert('playerTwo')
             playerTurn= 'playerOne'
         }
-// check to see if available has been clicked. if so move up one
+
+
+// check to see if 'available' has been clicked. if so move up one
         event.target.classList.remove('available')
         let currentCircleId = event.target.id
         let idArray = currentCircleId.split("")
-        console.log(idArray)
+        // console.log(idArray)
         let num = parseInt(idArray[1])
         num += 1
         idArray[1] = num
@@ -31,21 +31,25 @@ for (let i=0; i < circles.length; i++){
         document.querySelector(`#${newId}`).classList.add('available')
         console.log(currentCircleId)
 
-
-
-
      }
     })
 
-
   }
 
+const reset = () => {
+  circles.forEach(circle => {
+    circle.classList.remove("playerOne")
+    circle.classList.remove("playerTwo")
+  })
+
+}
 
 //-------------------------------------------------------
 //check array for winner
+function checkWinner (){
 
 let winningArrays = [
-  [0, 1, 2, 3], [41, 40, 39, 38],[7, 8, 9, 10],
+[0, 1, 2, 3], [41, 40, 39, 38],[7, 8, 9, 10],
 [34, 33, 32, 31], [14, 15, 16, 17], [27, 26, 25, 24],
 [21, 22, 23, 24], [20, 19, 18, 17], [28, 29, 30, 31],
 [13, 12, 11, 10], [35, 36, 37, 38], [6, 5, 4, 3],
@@ -71,10 +75,10 @@ let winningArrays = [
 ];
 
 for( let i = 0; i < winningArrays.length; i ++){
-  const circle0 = circles[winningArrays[i][0]]
-  const circle1 = circles[winningArrays[i][1]]
-  const circle2 = circles[winningArrays[i][2]]
-  const circle3 = circles[winningArrays[i][3]]
+  let circle0 = circles[winningArrays[i][0]]
+  let circle1 = circles[winningArrays[i][1]]
+  let circle2 = circles[winningArrays[i][2]]
+  let circle3 = circles[winningArrays[i][3]]
 // console.log(circle0.classList)
 
 
@@ -82,17 +86,24 @@ for( let i = 0; i < winningArrays.length; i ++){
   && circle1.classList.contains('playerOne')
   && circle2.classList.contains('playerOne')
   && circle3.classList.contains('playerOne')){
-  alert('PlayerOne wins')
+  alert('Player One Wins!!')
+  reset()
   }
 
   else if (circle0.classList.contains('playerTwo')
   && circle1.classList.contains('playerTwo')
   && circle2.classList.contains('playerTwo')
   && circle3.classList.contains('playerTwo')){
-  alert('PlayerTwo wins')
+  alert('Player Two wins!!')
+  reset()
         }
 
     }
+
+}
+circles.forEach(circle => circle.addEventListener('click', () => {
+  checkWinner()
+}))
 
 
 
