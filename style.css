@@ -1,0 +1,33 @@
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.board {
+  display:flex;
+  flex-wrap:wrap;
+  height:auto;
+  width: 400px;
+  background-color: rgb(157, 151, 108)
+  }
+  .board div {
+  height:55px;
+  width:55px;
+  margin:1px;
+  border-radius:30px
+  }
+/* to get the roundness of the board
+https://www.w3schools.com/css/css_border_rounded.asp
+ */
+
+.circle{
+  background:white;
+  }
+
+.playerOne {
+    background-color: rgb(80, 78, 78);
+  }
+
+.playerTwo {
+    background-color: rgb(198, 198, 198);
+    }
